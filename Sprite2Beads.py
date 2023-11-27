@@ -138,12 +138,13 @@ def main() -> int:
             draw.text((x*IMAGE_UPSCALE+IMAGE_UPSCALE/2, y*IMAGE_UPSCALE+IMAGE_UPSCALE/2), out_color.name, fill=out_color.get_textcolor(), anchor='mm')
 
     # Save output file
+    suffix = str()
     if palette is None:
-        suffix = "big"
+        suffix += "big"
     else:
-        suffix = "bead"
+        suffix += "bead_" + args.color.lower()
 
-    output_filename = "{0}_{2}_{3}{1}".format(*os.path.splitext(args.image), suffix, args.color.lower())
+    output_filename = "{0}_{2}{1}".format(*os.path.splitext(args.image), suffix)
     im_out.save(output_filename)
 
 if __name__ == "__main__":
